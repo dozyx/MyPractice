@@ -1,2 +1,4 @@
-# MyPractice
-曾经渴望别人告诉我什么是 best practice，现在终于明白 practice is best.
+记录实践中使用的工具、学习的知识、实践的经验等。
+
+## Rule
++ 用 issue 记录待办
