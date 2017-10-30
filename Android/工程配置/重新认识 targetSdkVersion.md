@@ -14,6 +14,7 @@
 如果希望确定新 SDK 版本的行为变更，可以在 [VERSION_CODES](http://developer.android.com/reference/android/os/Build.VERSION_CODES.html?utm_campaign=adp_series_sdkversion_010616&utm_source=medium&utm_medium=blog) 和 [API Level](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html?utm_campaign=adp_series_sdkversion_010616&utm_source=medium&utm_medium=blog#ApiLevels) 中查看，这将有助于我们适配新的 SDK。  
 
 最后，引用一下关于上面三个版本之间的理想关系：
+
 `minSdkVersion (lowest possible) <= targetSdkVersion == compileSdkVersion (latest SDK)`
 
 
