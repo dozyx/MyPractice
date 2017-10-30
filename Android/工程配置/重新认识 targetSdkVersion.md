@@ -8,7 +8,9 @@
 + targetSdkVersion：希望运行的目标版本
 
 前面两个版本其实都比较好理解，所以下面主要说下 targetSdkVersion。  
+
 「targetSdkVersion 是 Android 提供向前兼容的主要依据，在应用的 targetSdkVersion 没有更新之前系统不会应用最新的行为变化。」在新的 Android 版本中，原有的 API 行为可能做出了变更，但如果我们的 targetSdkVersion 没有更改，那么 API 的行为将维持旧的逻辑，这样就可以确保 app 的功能在新的 SDK 中也可以保持相同的行为。所以，关于文章开头说的 bug，虽然没有深入细究它的原理，但个人猜测（很不严谨。。。）是由于 API 19 的 WebView 行为更改导致的。  
+
 如果希望确定新 SDK 版本的行为变更，可以在 [VERSION_CODES](http://developer.android.com/reference/android/os/Build.VERSION_CODES.html?utm_campaign=adp_series_sdkversion_010616&utm_source=medium&utm_medium=blog) 和 [API Level](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html?utm_campaign=adp_series_sdkversion_010616&utm_source=medium&utm_medium=blog#ApiLevels) 中查看，这将有助于我们适配新的 SDK。  
 
 最后，引用一下关于上面三个版本之间的理想关系：
@@ -21,6 +23,8 @@
 
 
 参考：
+
 [如何选择 compileSdkVersion, minSdkVersion 和 targetSdkVersion](https://chinagdg.org/2016/01/picking-your-compilesdkversion-minsdkversion-targetsdkversion/)
+
  [tools:overrideLibrary 标记](https://developer.android.com/studio/build/manifest-merge.html?#wzxhzdk49uses-sdk)
 [当前的 Android 分布统计](http://developer.android.com/about/dashboards/index.html)
