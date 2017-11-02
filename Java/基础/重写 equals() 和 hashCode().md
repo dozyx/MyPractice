@@ -15,8 +15,7 @@
 
 + 将参数转换为正确的类型
 
-+ 对于该类中的每个 “关键” 域，检查参数中的域是否与该对象中对应的域相匹配
-
++ 对于该类中的每个 “关键” 域，检查参数中的域是否与该对象中对应的域相匹配    
   对于既不是 float 也不是 double 类型的基本类型，可以使用 “==” 进行比较；对于对象引用域，可以递归地调用 equals 方法；对于 float 域，可以使用 Float.compare 方法；对于 double 域，则使用 Double.compare。float 和 double 的处理是因为考虑到 Float.NaN、-0.0f 以及类似的 double 常量。如 0.0 与 -0.0 在使用 “==” 比较时，前者与后者相等，但使用 Float.compare 时，前者大于后者，具体说明 Float.equals 文档（这样设计的目的应该是为了更符合自然排序）。对于数组域，则要把以上的指导原则应用到每个元素上，如果数组域中的每个元素都很重要，可以使用 Arrays.equals 方法。
 
 
@@ -87,7 +86,5 @@ private volatile int hashCode; // (See Item 71)
 参考：    
 
 《Effective Java 第2版》
-
 ​	第 8 条 覆盖 equals 时请遵守通用约定
-
 ​	第 9 条 覆盖 equals 时总要覆盖 hashCode
