@@ -12,7 +12,6 @@
 `$ mkdir java`
 
 + 将 「Java.sublime-package」复制到临时目录中    
-
 `$ cp Java.sublime-package java/`
 `$ cd java`
 
