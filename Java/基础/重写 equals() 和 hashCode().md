@@ -85,6 +85,6 @@ private volatile int hashCode; // (See Item 71)
 
 参考：    
 
-《Effective Java 第2版》
-​	第 8 条 覆盖 equals 时请遵守通用约定
+《Effective Java 第2版》    
+​	第 8 条 覆盖 equals 时请遵守通用约定    
 ​	第 9 条 覆盖 equals 时总要覆盖 hashCode
