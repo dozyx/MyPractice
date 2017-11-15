@@ -2,6 +2,21 @@
 + 图片资源前缀 `ic_`
 + 考虑以 Helper 而不是 Util 作为后缀
 
+共享常量位置（阿里）：
+1. 跨应用共享常量：放置在二方库中，通常是 client.jar 中的 constant 目录下。
+2. 应用内共享常量：放置在一方库中，通常是 modules 中的 constant 目录下。
+反例：易懂变量也要统一定义成应用内共享常量，两位攻城师在两个类中分别定义了表示
+“是”的变量：
+阿里巴巴 Java 开发手册
+ ——禁止用于商业用途，违者必究—— 4 /35
+类 A 中：public static final String YES = "yes";
+类 B 中：public static final String YES = "y";
+A.YES.equals(B.YES)，预期是 true，但实际返回为 false，导致线上问题。
+3. 子工程内部共享常量：即在当前子工程的 constant 目录下。
+4. 包内共享常量：即在当前包下单独的 constant 目录下。
+5. 类内共享常量：直接在类内部 private static final 定义。
+
+
 Android Studio 代码风格文件：    
 [官方AndroidStyle](https://github.com/aosp-mirror/platform_development/blob/master/ide/intellij/codestyles/AndroidStyle.xml)
 
