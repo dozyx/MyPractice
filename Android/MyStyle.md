@@ -1,18 +1,107 @@
- 
-+ 将通用的基类放于 common 包中，如 adapter、activity
-+ 图片资源前缀 `ic_`
-+ 考虑以 Helper 而不是 Util 作为后缀
-+ 使用 Objects.equals 判断是否逻辑相等
-+ 
-
 Android Studio 代码风格文件：    
 [官方AndroidStyle](https://github.com/aosp-mirror/platform_development/blob/master/ide/intellij/codestyles/AndroidStyle.xml)    
-个人修改：
-+ AndroidStyle 中的 XML 格式不是标准的 Android 风格，需要改成内置的：Android Studio -> Settings -> Editor -> Code Style -> XML -> Set from... -> Android
-+ 全局变量前不加 m（《代码整洁之道》中提及，细想的确是多余的，完全可以依靠IDE与局部变量进行区分）：Android Studio -> Settings -> Editor -> Code Style -> Java -> Code Generation -> Naming -> 去掉 Field 的 m 前缀
+个人基于此风格使用 AS 并做下列修改：
 
-代码风格：    
+- AndroidStyle 中的 XML 格式不是标准的 Android 风格，需要改成内置的：Android Studio -> Settings -> Editor -> Code Style -> XML -> Set from... -> Android
+- 全局变量前不加 m（《代码整洁之道》中提及，细想的确是多余的，完全可以依靠IDE与局部变量进行区分）：Android Studio -> Settings -> Editor -> Code Style -> Java -> Code Generation -> Naming -> 去掉 Field 的 m 前缀
+
+### 包与类
+
+
++ 将通用的基类放于 common 包中，如 adapter、activity
++ 考虑以 Helper 而不是 Util 作为后缀
+
+
+
+### 代码
+
++ 使用 Objects.equals 判断是否逻辑相等
+
+  ​
+
+### 资源文件
+
+#### drawable 文件
+
+| 类型           | 前缀              | 示例                         |
+| ------------ | --------------- | -------------------------- |
+| Action bar   | `ab_`           | `ab_stacked.9.png`         |
+| Button       | `btn_`          | `btn_send_pressed.9.png`   |
+| Dialog       | `dialog_`       | `dialog_top.9.png`         |
+| Divider      | `divider_`      | `divider_horizontal.9.png` |
+| Icon         | `ic_`           | `ic_star.png`              |
+| Menu         | `menu_`         | `menu_submenu_bg.9.png`    |
+| Notification | `notification_` | `notification_bg.9.png`    |
+| Tabs         | `tab_`          | `tab_pressed.9.png`        |
+
+
+
+#### icon 图标命名
+
+icon 指的是非 xml 文件的图片资源
+
+| 类型                              | 前缀               | 示例                         |
+| ------------------------------- | ---------------- | -------------------------- |
+| Icons                           | `ic_`            | `ic_star.png`              |
+| Launcher icons                  | `ic_launcher`    | `ic_launcher_calendar.png` |
+| Menu icons and Action Bar icons | `ic_menu`        | `ic_menu_archive.png`      |
+| Status bar icons                | `ic_stat_notify` | `ic_stat_notify_msg.png`   |
+| Tab icons                       | `ic_tab`         | `ic_tab_recent.png`        |
+| Dialog icons                    | `ic_dialog`      | `ic_dialog_info.png`       |
+
+
+
+#### selector 状态
+
+| 状态       | 后缀          | 示例                         |
+| -------- | ----------- | -------------------------- |
+| Normal   | `_normal`   | `btn_order_normal.9.png`   |
+| Pressed  | `_pressed`  | `btn_order_pressed.9.png`  |
+| Focused  | `_focused`  | `btn_order_focused.9.png`  |
+| Disabled | `_disabled` | `btn_order_disabled.9.png` |
+| Selected | `_selected` | `btn_order_selected.9.png` |
+
+
+
+### XML 风格
+
+资源 id 采用`小写+下划线`命名。
+
+#### ID 名称
+
+| 元素          | 前缀        |
+| ----------- | --------- |
+| `TextView`  | `text_`   |
+| `ImageView` | `image_`  |
+| `Button`    | `button_` |
+| `Menu`      | `menu_`   |
+
+> 遵循此规则的话，在声明变量时，也需要将元素名作为前缀，如 textXXX。
+
+#### 字符串
+
+String 的名称前缀表明它们所属的功能块，如`registration_email_hint` 和 `registration_name_hint`。如果不属于任何功能块，遵循以下规则：
+
+| 前缀        | 描述                                   |
+| --------- | ------------------------------------ |
+| `error_`  | An error message                     |
+| `msg_`    | A regular information message        |
+| `title_`  | A title, i.e. a dialog title         |
+| `action_` | An action such as "Save" or "Create" |
+
+
+
+#### Styles 和 Themes
+
+按 **UpperCamelCase** 大驼峰命名。
+
+
+
+### 参考 
+
 [android-guidelines](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md) 这里面给出的很多命名的前缀都比较符合我的想法    
+
+
 
 
 [阿里巴巴Java开发手册](https://github.com/alibaba/p3c/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E7%BB%88%E6%9E%81%E7%89%88%EF%BC%89.pdf)    
@@ -41,23 +130,22 @@ Android Studio 代码风格文件：
 
 
 
-
- 
 关于基本数据类型与包装数据类型的使用标准如下：
+
 1. 【强制】所有的 POJO 类属性必须使用包装数据类型。
 2. 【强制】RPC 方法的返回值和参数必须使用包装数据类型。
 3. 【推荐】所有的局部变量使用基本数据类型。    
-说明：POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查，都由使用者来保证。    
-正例：数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。    
-反例：比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装数据类型的 null 值，能够表示额外的信息，如：远程调用失败，异常退出。     
+  说明：POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查，都由使用者来保证。    
+  正例：数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。    
+  反例：比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装数据类型的 null 值，能够表示额外的信息，如：远程调用失败，异常退出。     
 
 共享常量位置：
 1. 跨应用共享常量：放置在二方库中，通常是 client.jar 中的 constant 目录下。
 2. 应用内共享常量：放置在一方库中，通常是 modules 中的 constant 目录下。    
-反例：易懂变量也要统一定义成应用内共享常量，两位攻城师在两个类中分别定义了表示“是”的变量：    
-类 A 中：public static final String YES = "yes";    
-类 B 中：public static final String YES = "y";    
-A.YES.equals(B.YES)，预期是 true，但实际返回为 false，导致线上问题。
+  反例：易懂变量也要统一定义成应用内共享常量，两位攻城师在两个类中分别定义了表示“是”的变量：    
+  类 A 中：public static final String YES = "yes";    
+  类 B 中：public static final String YES = "y";    
+  A.YES.equals(B.YES)，预期是 true，但实际返回为 false，导致线上问题。
 3. 子工程内部共享常量：即在当前子工程的 constant 目录下。
 4. 包内共享常量：即在当前包下单独的 constant 目录下。
 5. 类内共享常量：直接在类内部 private static final 定义。
