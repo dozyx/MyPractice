@@ -6,7 +6,10 @@
 + 
 
 Android Studio 代码风格文件：    
-[官方AndroidStyle](https://github.com/aosp-mirror/platform_development/blob/master/ide/intellij/codestyles/AndroidStyle.xml)
+[官方AndroidStyle](https://github.com/aosp-mirror/platform_development/blob/master/ide/intellij/codestyles/AndroidStyle.xml)    
+个人修改：
++ AndroidStyle 中的 XML 格式不是标准的 Android 风格，需要改成内置的：Android Studio -> Settings -> Editor -> Code Style -> XML -> Set from... -> Android
++ 全局变量前不加 m（《代码整洁之道》中提及，细想的确是多余的，完全可以依靠IDE与局部变量进行区分）：Android Studio -> Settings -> Editor -> Code Style -> Java -> Code Generation -> Naming -> 去掉 Field 的 m 前缀
 
 代码风格：    
 [android-guidelines](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md) 这里面给出的很多命名的前缀都比较符合我的想法    
