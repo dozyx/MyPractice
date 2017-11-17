@@ -1,3 +1,5 @@
+> Android
+
 [java-8-lambdas-exercises](https://github.com/RichardWarburton/java-8-lambdas-exercises)
 
 ## lambda 表达式
@@ -80,7 +82,37 @@ while(iterator.hasNext()) {
 }
 ```
 
+过程的第一步是创建一个 Iterator 对象来控制迭代过程，这种方式可以称为 external iteration。
 
+![External iteration](../../photo/External iteration.png)
+
+ internal iteration 如下：
+
+```java
+long count = allArtists.stream()
+				.filter(artist -> artist.isFrom("London"))
+				.count();
+```
+
+![Internal iteration](../../photo/Internal iteration.png)
+
+我们去掉 count() 并加上打印：
+
+```java
+allArtists.stream()
+          .filter(artist -> {
+				System.out.println(artist.getName());
+				return artist.isFrom("London");
+});
+```
+
+上面的代码将什么都不会执行，filter 只是创建了一个 Stream 用法(recipe)，但没有被强制使用，像 filter 的这种方法是 **lazy** 的，而 count 这种会生成最终值的则被称作 **eager**。
+
+判断一个操作符是 lazy 还是 eager ：如果返回的是 Stream 则是 lazy；返回的是另一个值或者 void 则是 eager。
+
+
+
+### 常用的 Stream 操作符
 
 
 
