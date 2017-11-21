@@ -62,6 +62,18 @@ icon 指的是非 xml 文件的图片资源
 | Selected | `_selected` | `btn_order_selected.9.png` |
 
 
+#### layout 文件
+| 组件        | 类名            | Layout名                  |
+| ---------------- | ---------------------- | ---------------------------- |
+| Activity         | `UserProfileActivity`  | `activity_user_profile.xml`  |
+| Fragment         | `SignUpFragment`       | `fragment_sign_up.xml`       |
+| Dialog           | `ChangePasswordDialog` | `dialog_change_password.xml` |
+| AdapterView item | ---                    | `item_person.xml`            |
+| Partial layout   | ---                    | `partial_stats_bar.xml`      |
+对于 Adapter 中的布局，采用 item_ 前缀。    
+对于作为其它布局的一部而存在的布局，采用 partial_前缀。
+
+
 
 ### XML 风格
 
