@@ -9,7 +9,26 @@ Android Studio 代码风格文件：
 
 
 + 将通用的基类放于 common 包中，如 adapter、activity
+
 + 考虑以 Helper 而不是 Util 作为后缀
+
++ 不要在滥用 Base 前缀，BaseXXX 类需要有明确意义，或者存在可以说明其意图的抽象方法，建议写成 BaseXXXClass 类似格式增加附加说明信息。
+
++ 创建一个 PreferenceConst 类存放 SharedPreference 常量，如：
+
+  ```java
+  public final class PreferenceConst {
+      public static final String SP_FILE_NAME_USER = "user_info";
+      
+      public static class USER {
+          public static final String NAME = "name";
+      }
+  }
+  ```
+
++ 最外面的 util 包存放通用性将强的类，而专用的 util 类应存放在特定功能的包中
+
+  ​
 
 
 
@@ -63,13 +82,13 @@ icon 指的是非 xml 文件的图片资源
 
 
 #### layout 文件
-| 组件        | 类名            | Layout名                  |
+| 组件               | 类名                     | Layout名                      |
 | ---------------- | ---------------------- | ---------------------------- |
 | Activity         | `UserProfileActivity`  | `activity_user_profile.xml`  |
 | Fragment         | `SignUpFragment`       | `fragment_sign_up.xml`       |
 | Dialog           | `ChangePasswordDialog` | `dialog_change_password.xml` |
 | AdapterView item | ---                    | `item_person.xml`            |
-| Partial layout   | ---                    | `partial_stats_bar.xml`      |    
+| Partial layout   | ---                    | `partial_stats_bar.xml`      |
 
 对于 Adapter 中的布局，采用 item_ 前缀。  
 
