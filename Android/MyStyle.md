@@ -116,7 +116,7 @@ icon 指的是非 xml 文件的图片资源
 
 #### 字符串
 
-String 的名称前缀表明它们所属的功能块，如`registration_email_hint` 和 `registration_name_hint`。如果不属于任何功能块，遵循以下规则：
+String 的**名称前缀表明它们所属的功能模块**，如`registration_email_hint` 和 `registration_name_hint`。如果不属于任何功能块，遵循以下规则：
 
 | 前缀        | 描述                                   |
 | --------- | ------------------------------------ |
