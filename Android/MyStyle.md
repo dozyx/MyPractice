@@ -133,6 +133,22 @@ String 的**名称前缀表明它们所属的功能模块**，如`registration_e
 
 
 
+### 注释
+
++ 对某一行进行注释，添加在该行末尾
++ 对某一块代码进行注释，添加在该块代码上面
++ 对于需要被外界访问的变量，考虑采用文档注释，这样可以不需要跳转即可了解其作用
+
+
+
+
+### 其他
+
++ 考虑增加一个中英文对照的文本文件，一个英文可能对应多个相同的中文意思，但一个中文意思只能对应一个英文
+
+
+
+
 ### 参考 
 
 [android-guidelines](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md) 这里面给出的很多命名的前缀都比较符合我的想法    
