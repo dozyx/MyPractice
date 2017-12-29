@@ -21,17 +21,19 @@ Settings -> Editor -> Code Style -> File and Code Templates -> Files -> Class
 
 ## 快捷键
 ### 自带常用
-| 功能                    | Windows          | Mac           | 说明        |
-| --------------------- | ---------------- | ------------- | --------- |
-| 大小写转换                 | Ctrl + Shift + U | ⌘ + Shift + U |           |
-| 打开设置                  | Ctrl + Alt + S   | ⌘ + ,         |           |
-| 类型层级（Type Hierarchy）  | Ctrl + H         |               | 可用来查看类的继承 |
-| 调用层级（Call Hierarchy）  | Ctrl + Alt + H   |               | 查看方法调用位置  |
-| 搜索源代码、数据库、操作和用户界面的元素等 | Shift + Shift    | ⇧ + ⇧         |           |
-| 最近文件                  | Ctrl + E         | ⌘ + E         |           |
-| 格式化                   | Ctrl + Shift + L | ⌥ + ⌘ + L     |           |
-| 前一 tab                |                  | ⇧ + ⌘ + [     |           |
-| 后一 tab                |                  | ⇧ + ⌘ + ]     |           |
+| 功能                    | Windows          | Mac           |
+| --------------------- | ---------------- | ------------- |
+| 大小写转换                 | Ctrl + Shift + U | ⌘ + Shift + U |
+| 打开设置                  | Ctrl + Alt + S   | ⌘ + ,         |
+| 类型层级（Type Hierarchy）  | Ctrl + H         |               |
+| 调用层级（Call Hierarchy）  | Ctrl + Alt + H   |               |
+| 搜索源代码、数据库、操作和用户界面的元素等 | Shift + Shift    | ⇧ + ⇧         |
+| 最近文件                  | Ctrl + E         | ⌘ + E         |
+| 格式化                   | Ctrl + Shift + L | ⌥ + ⌘ + L     |
+| 前一 tab                |                  | ⇧ + ⌘ + [     |
+| 后一 tab                |                  | ⇧ + ⌘ + ]     |
+| 查看文件结构（如类）            | Ctrl + F12       |               |
+|                       |                  |               |
 ### 修改
 | 功能                          | Windows        | Mac                 |
 | --------------------------- | -------------- | ------------------- |
@@ -42,6 +44,6 @@ Settings -> Editor -> Code Style -> File and Code Templates -> Files -> Class
 | 前进                          |                | ⌘ + ]               |
 | 后退                          |                | ⌘ + [               |
 | implement 方法                |                | ⌥ + I               |
-|                             |                |                     |
-|                             |                |                     |
+| 打开设置                        | Alt + ,        |                     |
+| 将布局属性导出(extract)为 Style     | Ctrl + Alt + S |                     |
 

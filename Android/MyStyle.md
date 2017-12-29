@@ -39,6 +39,8 @@ Android Studio 代码风格文件：
 
 + 使用 Objects.equals 判断是否逻辑相等
 
++ 在使用 ButterKnife 或者 data binding 库来配置事件时，明确添加表示行为的前缀，如 onBtnXXX，这样方便在阅读代码时迅速定位执行位置
+
   ​
 
 ### 资源文件
