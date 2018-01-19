@@ -29,6 +29,14 @@ doc：定义了一个 drawable 的 xml 文件，该 drawable 被嵌入了特定�
 
 
 
+#### inset 无效问题
+
+> 在某些机型上发现 inset 没有效果，Android 5.0，有时间需要确认下
+
+
+
+
+
 参考：
 
 [drawable resource Inset](https://developer.android.com/guide/topics/resources/drawable-resource.html#Inset)
