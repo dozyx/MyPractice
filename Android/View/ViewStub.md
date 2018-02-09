@@ -1,4 +1,4 @@
-ViewStub 的唯一缺陷是不支持 merge 标签。
+ViewStub 的唯一缺陷是不支持 merge 标签。在使用时还要注意出现因为 id 而导致某个 View 为 null 的情况。
 
 
 
