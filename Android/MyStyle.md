@@ -133,6 +133,8 @@ String 的**名称前缀表明它们所属的功能模块**，如`registration_e
 
 按 **UpperCamelCase** 大驼峰命名。
 
++ 用于文本外观的 Style，名称中包含 TextAppearance
+
 
 
 ### 注释
