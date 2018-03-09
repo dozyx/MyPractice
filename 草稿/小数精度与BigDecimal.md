@@ -1,3 +1,7 @@
+> 在使用 float 和 double 时，需要注意，我们输入的一个数字有限位数的数字对于计算机而言，可能并不是一个精确的数字，因为计算机表示不了大部分的数。所以，为了使数字与我们理解的一致，需要使用到 BigDecimal。
+
+
+
 ## 浮点数丢失精度问题
 
 > 运行 `System.out.print(0.4 + 0.2);`，结果为 0.6000000000000001，计算机算错了吗？
@@ -60,6 +64,36 @@ public class Test {
         System.out.println("BigDecimal.ROUND_UNNECESSARY -> " + num);
     }
 }
+```
+
+
+
+### scale
+
+scale 表示小数点后面的位数，setScale 方法将返回一个新的 BigDecimal 实例，如果新的 scale 大于旧的，那么将在原值后面加 0，如果新 scale 小于旧的，那么将去掉原值尾部的 0。如果原值尾部不是 0，那么将发生 round，默认的 round mode 为 ROUND_UNNECESSARY，在尾部不是 0 的时候，将抛出 ArithmeticException 异常。
+
+
+
+### stripTrailingZeros
+
+移除尾部的 0，返回一个新的 BigDecimal 实例。
+
+
+
+### toPlainString 与 toString
+
+```java
+MathContext mc = new MathContext(3); // 3 precision
+BigDecimal bigDecimal = new BigDecimal("1234E+4", mc);
+// Assign the plain string value of bigDecimal to s
+String plainString = bigDecimal.toPlainString();
+
+String str = "Plain string value of " + bigDecimal + " is " + plainString;
+
+// print s value
+System.out.println( str );
+
+//Output : Plain string value of 1.23E+7 is 12300000
 ```
 
 
