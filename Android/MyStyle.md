@@ -157,6 +157,8 @@ String 的**名称前缀表明它们所属的功能模块**，如`registration_e
 
 [android-guidelines](https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md) 这里面给出的很多命名的前缀都比较符合我的想法    
 
+[futurice/android-best-practices](futurice/android-best-practices)
+
 
 
 

@@ -1,0 +1,3 @@
+> Error:Execution failed for task ':app:clean'. > Unable to delete directory...
+
+关闭 instant run 后正常，但如果开启了混淆，debug 源码会不方便，后来不知道怎么又好了。

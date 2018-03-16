@@ -8,6 +8,17 @@
 
 
 
+
+
+
+
+
+#### 问题记录
+
++ 20180315：发生 “Type parameter T has incompatible upper bounds: ViewDataBinding” 错误，对 Android Studio 进行 invalidate and restart 操作后，有一个使用 \<layout> 的布局被还原，而 SVN 尚未保存，天坑。。。（注：该文件是几天前已写好，今天发生了断电导致电脑关机，不过应该布局文件还原是发生在重启 android studio 后，因为重启后的错误提示成为了找不到类） 
++ 修改 id 名称后，没有自动变更生成类中的变量名，rebuild 也无效，令人捉狂
+
+
 参考：
 
 [Android Data Binding: That <include> Thing](https://medium.com/google-developers/android-data-binding-that-include-thing-1c8791dd6038)
