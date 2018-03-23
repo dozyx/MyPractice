@@ -1,12 +1,9 @@
 + ViewDataBinding 类在 build 结束后才会自动生成
 
 
-+ DataBinding 可以找到 include 标签的控件，但要求 include 标签具有 id 属性，这样才可以通过 include 标签生成的 field 来找到 include 布局的 view。
++ DataBinding 可以找到 include 标签的控件，但要求 include 标签具有 id 属性，这样才可以通过 include 标签生成的 field 来找到 include 布局的 view。（注：好像 include 中的布局的根标签也要是 layout，不过暂时没找过明确提到这点的地方）
 + viewstub 标签也能使用 data binding
-
-
-
-
++ DataBinding 获取布局的 view 时更加方便，如果是使用 findViewById 则需要注意 id 名称，这在存在大量类似 id 名称时很容易出错。
 
 
 
