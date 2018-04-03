@@ -8,7 +8,7 @@
 
 
 
-## BigDecimail
+## BigDecimal
 
 注意事项：
 
@@ -95,6 +95,68 @@ System.out.println( str );
 
 //Output : Plain string value of 1.23E+7 is 12300000
 ```
+
+
+
+### String vs double
+
+```java
+System.out.println(new BigDecimal(String.valueOf(2.105)).toPlainString());
+System.out.println(new BigDecimal(2.105).toPlainString());
+```
+
+上面的打印结果分别为：
+
+2.105
+2.104999999999999982236431605997495353221893310546875
+
+如果我们对这两个 BigDecimal 进行保留两位小数约等处理
+
+```java
+System.out.println(new BigDecimal(String.valueOf(2.105)).setScale(2,BigDecimal.ROUND_HALF_UP));
+        System.out.println(new BigDecimal(2.105).setScale(2,BigDecimal.ROUND_HALF_UP));
+```
+
+ 最后的结果为：
+
+2.11
+2.10
+
+所以，需要时刻记住，我们直观认为的精确数字，未必就是精确的，在计算过程中，为了得到预想的计算结果，我们也需要使用 BigDecimal 来进行计算。再看一个例子：
+
+```java
+System.out.println(new BigDecimal(28.5).divide(new BigDecimal(100)).setScale(2,BigDecimal.ROUND_HALF_UP));
+System.out.println(new BigDecimal(28.5/100).setScale(2,BigDecimal.ROUND_HALF_UP));
+System.out.println(new BigDecimal(28.5/100).toPlainString());
+```
+
+打印结果为
+
+0.29
+0.28
+0.284999999999999975575093458246556110680103302001953125
+
+
+
+### doubleValue 和 floatValue
+
+显示，这两个方法的作用是将 BigDecimal 转为 double 和 float，但需要注意的是当 BigDecimal 未经过 scale 的值的超过一定位数，即该数字无法被精确表示时，那么返回的将是一个经过约等的数字。
+
+> 这可以理解为 BigDecimal 构造的逆向过程。
+
+如：
+
+```java
+System.out.println(new BigDecimal(28.5/100).toPlainString());
+System.out.println(new BigDecimal(28.5/100).setScale(20,BigDecimal.ROUND_HALF_UP).doubleValue());
+System.out.println(new BigDecimal(28.5/100).floatValue());
+```
+
+结果为：
+
+0.284999999999999975575093458246556110680103302001953125
+0.285
+0.285
 
 
 
