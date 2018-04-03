@@ -19,6 +19,14 @@ Settings -> Editor -> Code Style -> File and Code Templates -> Files -> Class
 参考：    
 [Android Studio 必备技巧：TODO 用法及自定义 TODO](http://blog.csdn.net/my_truelove/article/details/72857949#三-android-studio-fixme-用法)
 
+
+
+### 模拟应用被系统杀死
+
+Logcat 窗口 -> Terminate Application
+
+
+
 ## 快捷键
 ### 自带常用
 | 功能                    | Windows          | Mac           |
