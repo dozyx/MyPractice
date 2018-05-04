@@ -27,6 +27,12 @@ Logcat 窗口 -> Terminate Application
 
 
 
+### 删除未使用的 import
+
+快捷键 Ctrl + Alt + O（Windows），Control + Alt + O（Mac）
+
+自动删除：Settings->Editor->Auto Import->Optimize Imports on the fly
+
 ## 快捷键
 ### 自带常用
 | 功能                    | Windows          | Mac           |
