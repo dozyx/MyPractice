@@ -4,9 +4,11 @@
 
 ## 通过 GUI 配置
 
-右键 SVN 文件/文件夹 -> TortoiseSVN -> Properties     
++ 右键 SVN 文件/文件夹 -> TortoiseSVN -> Properties     
 
-如果有忽略文件，将可以界面中看到，如果没有，可以通过 New... 新建（svn:ignore 或者 svn:globl-ignores）,在填写值时，每行填写一个文件/文件夹。
+  如果有忽略文件，将可以界面中看到，如果没有，可以通过 New... 新建（svn:ignore 或者 svn:globl-ignores）,在填写值时，每行填写一个文件/文件夹。
+
++ 对于未加入版本中的文件，可以右键 TortoiseSVN -> add to ignore list。不过该方式好像无法用于子文件。。
 
 
 
