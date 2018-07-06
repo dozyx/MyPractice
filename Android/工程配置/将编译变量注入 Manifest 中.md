@@ -54,7 +54,7 @@ android {
 </intent-filter>
 ```
 
-
+> 在 library module 中定义的 manifestPlaceholders 会被忽略，这有点蛋疼。
 
 参考：
 

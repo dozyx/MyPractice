@@ -1,3 +1,5 @@
+> MVP 的实现并没有固定的模式，每个人实现出来的 MVP 都可能不一样。
+
 tips：
 
 + 为 presenter 添加 attach(View) 和 detach() 方法

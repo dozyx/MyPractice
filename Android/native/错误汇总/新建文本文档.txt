@@ -1,0 +1,9 @@
++ 检查 jniLib 目录是否正确，目录中 so 库是否齐全，如有必要，需要增加过滤
+
+  ```
+  ndk {
+       abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+  }
+  ```
+
+  
