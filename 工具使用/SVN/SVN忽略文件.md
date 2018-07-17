@@ -48,6 +48,12 @@
 
 
 
+## 忽略已添加到库中的文件
+
+对于未 commit 的文件，可以通过 TortoiseSVN -> Undo Add... 撤销添加，然后将文件加到 ignore 列表中；而对于已经在仓库中的文件需要先删除然后才能添加到 ignore 列表，有一个简便操作可以实现该功能：`TortoiseSVN -> Unversion and add to ignore list`。
+
+
+
 ## 附：Android.gitignore
 
 [Android.gitignore](https://github.com/github/gitignore/blob/master/Android.gitignore)

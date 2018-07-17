@@ -1,12 +1,14 @@
 Android Studio 代码风格文件：    
-[官方AndroidStyle](https://github.com/aosp-mirror/platform_development/blob/master/ide/intellij/codestyles/AndroidStyle.xml)    
+[官方AndroidStyle](https://github.com/aosp-mirror/platform_development/blob/master/ide/intellij/codestyles/AndroidStyle.xml)    
 个人基于此风格使用 AS 并做下列修改：
 
-- AndroidStyle 中的 XML 格式不是标准的 Android 风格，需要改成内置的：Android Studio -> Settings -> Editor -> Code Style -> XML -> Set from... -> Android
+- AndroidStyle 中的 XML 格式不是标准的 Android 风格，需要改成内置的：Android Studio -> Settings -> Editor -> Code Style -> XML -> Set from... -> Android（如果没有生效，Code Style -> XML -> Android -> 勾选 Use custom formatting settings for Android XML files）
 
   （Windows 下 Ctrl + Alt + L 与网易云音乐冲突）
 
 - 全局变量前不加 m（《代码整洁之道》中提及，细想的确是多余的，完全可以依靠IDE与局部变量进行区分）：Android Studio -> Settings -> Editor -> Code Style -> Java -> Code Generation -> Naming -> 去掉 Field 的 m 前缀
+
+- setfrom 修改 Kotlin 
 
 ### 包与类
 
@@ -193,17 +195,17 @@ String 的**名称前缀表明它们所属的功能模块**，如`registration_e
 1. 【强制】所有的 POJO 类属性必须使用包装数据类型。
 2. 【强制】RPC 方法的返回值和参数必须使用包装数据类型。
 3. 【推荐】所有的局部变量使用基本数据类型。    
-  说明：POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查，都由使用者来保证。    
-  正例：数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。    
-  反例：比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装数据类型的 null 值，能够表示额外的信息，如：远程调用失败，异常退出。     
+    说明：POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何 NPE 问题，或者入库检查，都由使用者来保证。    
+    正例：数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。    
+    反例：比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装数据类型的 null 值，能够表示额外的信息，如：远程调用失败，异常退出。     
 
 共享常量位置：
 1. 跨应用共享常量：放置在二方库中，通常是 client.jar 中的 constant 目录下。
 2. 应用内共享常量：放置在一方库中，通常是 modules 中的 constant 目录下。    
-  反例：易懂变量也要统一定义成应用内共享常量，两位攻城师在两个类中分别定义了表示“是”的变量：    
-  类 A 中：public static final String YES = "yes";    
-  类 B 中：public static final String YES = "y";    
-  A.YES.equals(B.YES)，预期是 true，但实际返回为 false，导致线上问题。
+    反例：易懂变量也要统一定义成应用内共享常量，两位攻城师在两个类中分别定义了表示“是”的变量：    
+    类 A 中：public static final String YES = "yes";    
+    类 B 中：public static final String YES = "y";    
+    A.YES.equals(B.YES)，预期是 true，但实际返回为 false，导致线上问题。
 3. 子工程内部共享常量：即在当前子工程的 constant 目录下。
 4. 包内共享常量：即在当前包下单独的 constant 目录下。
 5. 类内共享常量：直接在类内部 private static final 定义。
