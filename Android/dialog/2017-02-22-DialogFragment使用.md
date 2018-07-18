@@ -153,4 +153,4 @@ dialog.window.setBackgroundDrawableResource(android.R.color.transparent)
 + 根布局采用 RelativeLayout（有问题，看下面）
 + 在原根布局外增加一个 FrameLayout，宽高设为 match_parent（ConstraintLayout 试验有效。。再次验证发现其实应该是 FrameLayout 作为根布局就不会变形。如果换成 LinearLayout 会变形）
 
-> 在改用 RelativeLayout 后，发现将一个 view 放置在右侧，然后设置 marginRight 无效，感觉就像是根布局的 layout_width 和 layout_height 被强制改为 wrap_content。所以最终还是换回了 FrameLayout 嵌套 ConstraintLayout。
+> 在改用 RelativeLayout 后，发现将一个 view 放置在右侧，然后设置 marginRight 无效，感觉就像是根布局的 layout_width 和 layout_height 被强制改为 wrap_content。所以最终还是换回了增加 FrameLayout 嵌套 方式。
