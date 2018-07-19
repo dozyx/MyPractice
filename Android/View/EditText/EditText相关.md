@@ -50,6 +50,25 @@ editText.setFilters(new InputFilter[]{typeFilter});
 
 
 
+## error 提示
+
+有时候，需要在用户输入信息不满足规则时显示错误信息，学习 android 两年了都没注意到 TextView 里还有一个 setError 方法直到学习 TextInputLayout 时才发现。。。通过该方法可以在 EditText 右侧显示一个指示错误的图标，然后在 EditText 获得焦点时显示一个弹出式的错误信息。
+
+通过源码发现错误信息使用的布局如下：
+
+```xml
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textColor="?android:attr/textColorPrimaryInverse"
+/>
+```
+
+因此，我们可以通过在 theme 中设置 textAppearanceSmall 和 textColorPrimaryInverse 属性来修改外观。（只是理论分析，暂未尝试）
+
+
+
 
 
 参考：
