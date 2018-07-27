@@ -1,5 +1,7 @@
 > 在使用 float 和 double 时，需要注意，我们输入的一个数字有限位数的数字对于计算机而言，可能并不是一个精确的数字，因为计算机表示不了大部分的数。所以，为了使数字与我们理解的一致，需要使用到 BigDecimal。
 
+> ！！！不要使用 BigDecimal(double d)  和 BigDecimal(float f) 方法，这回导致精度丢失，建议直接传 string 或者使用 valueOf 方法
+
 时刻记住，大部分小数都不是精确的数字。
 
 ## 浮点数丢失精度问题
@@ -160,6 +162,27 @@ System.out.println(new BigDecimal(28.5/100).floatValue());
 
 
 
+### valueOf(double val)  与 BigDecimal(double val)
+
+不要直接使用 BigDecimal(double val) 创建 BigDecimal 实例，这可能导致精度丢失，建议采用 valueOf(double val) 或者采用 String 的构造函数。
+
+源码：
+
+```java
+    public static BigDecimal valueOf(double val) {
+        if (Double.isInfinite(val) || Double.isNaN(val)) {
+            throw new NumberFormatException("Infinity or NaN: " + val);
+        }
+        return new BigDecimal(Double.toString(val));
+    }
+```
+
+
+
+
+
 参考：
 
 [代码之谜（五）- 浮点数（谁偷了你的精度？）](http://justjavac.com/codepuzzle/2012/11/11/codepuzzle-float-who-stole-your-accuracy.html)
+
+[How to round 0.745 to 0.75 using BigDecimal.ROUND_HALF_UP?](https://stackoverflow.com/questions/12460482/how-to-round-0-745-to-0-75-using-bigdecimal-round-half-up)
