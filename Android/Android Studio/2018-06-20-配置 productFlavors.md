@@ -133,7 +133,47 @@ android {
 
 
 
+#### 多个 dimension 
 
+比如：
+
+```groovy
+flavorDimensions "channel", "environment"
+    productFlavors {
+        guanwang {
+            dimension "channel"
+        }
+        yingyongbao {
+            dimension "channel"
+        }
+
+        dev {
+            dimension "environment"
+            buildConfigField("int", "NET_ENVIRONMENT", 3 + '')
+        }
+
+        pre {
+            dimension "environment"
+            buildConfigField("int", "NET_ENVIRONMENT", 2 + '')
+        }
+
+        product {
+            dimension "environment"
+            buildConfigField("int", "NET_ENVIRONMENT", 1 + '')
+        }
+
+        productFlavors.all { flavor ->
+            if (dimension == 'channel') {
+                buildConfigField("String", "CHANNEL", '\"' + name + '\"')
+                manifestPlaceholders = [MTA_CHANNEL: channelLabels[name]]
+            }
+        }
+    }
+```
+
+productFlavors.all 会遍历该次编译的所有 flavor，比如 build variant 为 guanwangDevDebug，all 方法会遍历两个 flavor：guanwang 和 dev。
+
+> ps：我一开始的理解是有问题的，我本以来 guanwangDev 是一个 flavor，而事实上，guanwang 和 dev 都是一个 flavor，而 guanwangDev 是它们的组合 flavor。productFlavors.all 的作用就相当于依次在 guanwang 和 dev 两个 flavor 中进行操作。
 
 
 

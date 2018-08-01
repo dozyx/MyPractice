@@ -129,18 +129,20 @@ activity 通过已经添加到 activity 布局中的 NavHost 接口的实现来�
 + Navigation.findNavController(View)
 在得到 NavController 后，通过调用 navigate() 方法来导航到 destination，该方法接收一个资源 ID 参数，这个 ID 可以是特定 destination 或者是一个 action 的 ID。使用 action ID 的一个好处是，可以使用过渡动画。
 示例代码：
-```scala
+```kotlin
 viewTransactionsButton.setOnClickListener { view ->
    view.findNavController().navigate(R.id.viewTransactionsAction)
 }
 ```
 > 上面是 Kotlin 的代码 View#findNavController 是一个扩展函数。  
+
 NavController 中还提供下以下方面来进行返回操作：
+
 + `NavController.navigateUp()`
 + `NavController.popBackStack()`
 
 对于 button，还可以使用下面的便利方法来进行导航：
-```scala
+```kotlin
 button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.next_fragment, null))
 ```
 
@@ -180,32 +182,43 @@ navigationView.setupWithNavController(navController)
 ### destination 间的数据传递
 传递数据的方式有两种：
 + Bundle 对象
-	1. Graph Editor，点击 destination
-	2. 在 Attributes 面板添加参数
-	3. 输入 name 和默认值
-	4. 点击 Text 栏，可以看到 destination 下新增了一个 argument
-```xml
-<fragment
-   android:id="@+id/confirmationFragment"
-   android:name="com.example.cashdog.cashdog.ConfirmationFragment"
-   android:label="fragment_confirmation"
-   tools:layout="@layout/fragment_confirmation">
-   <argument android:name="amount" android:defaultValue=”0” />	
-```
-	4. 在调用 navigate() 导航到该 destination 时，附带一个 bundle
-```scala
-var bundle = bundleOf("amount" to amount)
-view.findNavController().navigate(R.id.confirmationAction, bundle)	
-```
-	5. 在 destination 中使用传入的参数
-```scala
-val tv = view.findViewById(R.id.textViewAmount)
-tv.text = arguments.getString("amount")	
-```
+  1. Graph Editor，点击 destination
+
+  2. 在 Attributes 面板添加参数
+
+  3. 输入 name 和默认值
+
+  4. 点击 Text 栏，可以看到 destination 下新增了一个 argument
+
+     ```xml
+     <fragment
+        android:id="@+id/confirmationFragment"
+        android:name="com.example.cashdog.cashdog.ConfirmationFragment"
+        android:label="fragment_confirmation"
+        tools:layout="@layout/fragment_confirmation">
+        <argument android:name="amount" android:defaultValue=”0” />	
+     ```
+
+  5. 在调用 navigate() 导航到该 destination 时，附带一个 bundle
+
+     ```kotlin
+     var bundle = bundleOf("amount" to amount)
+     view.findNavController().navigate(R.id.confirmationAction, bundle)	
+     ```
+
+  6. 在 destination 中使用传入的参数
+
+     ```kotlin
+     val tv = view.findViewById(R.id.textViewAmount)
+     tv.text = arguments.getString("amount")	
+     ```
+
 + 使用 safeargs gradle 插件
 safeargs 是  Navigation 架构组件中的一个 gradle 插件，用来生成用于访问 destination 或者 action 参数的简单对象和 builder。
 > The Navigation Architecture Component has a Gradle plugin, called safeargs, that generates simple object and builder classes for type-safe access to arguments specified for destinations and actions.   
+
 添加：
+
 ```scala
 apply plugin: 'com.android.application'
 apply plugin: 'androidx.navigation.safeargs'
