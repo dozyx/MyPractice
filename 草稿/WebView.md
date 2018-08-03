@@ -8,6 +8,10 @@
 
 
 
+shouldOverrideUrlLoading 不拦截 post 请求，比如 form 里的 post 方法  
+
+
+
 
 
 参考：
