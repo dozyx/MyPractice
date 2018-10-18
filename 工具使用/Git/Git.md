@@ -34,6 +34,16 @@
 
 [List Git aliases](https://stackoverflow.com/questions/7066325/list-git-aliases)
 
+
+
+#### alias 里的 !
+
+ 在 gitalias.txt 中有的别名对应的指令带有 !，表示该指令将作为 shell 命令执行。
+
+参考：
+
+[What does the exclamation mark mean in git config alias?](https://stackoverflow.com/questions/21083933/what-does-the-exclamation-mark-mean-in-git-config-alias)
+
 ### 修改 git bash 启动路径
 
 + 右键属性
