@@ -52,9 +52,27 @@ buildTypes.each{
 
 
 
+### AndroidManifest 访问 build.gradle 中变量
 
+`build.gradle`
 
+```groovy
+android {
+    defaultConfig {
+        manifestPlaceholders = [hostName:"www.example.com"]
+    }
+    ...
+}
+```
 
+`manifest`
+
+```xml
+<intent-filter ... >
+    <data android:scheme="http" android:host="${hostName}" ... />
+    ...
+</intent-filter>
+```
 
 
 
