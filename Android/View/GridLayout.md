@@ -18,7 +18,7 @@ GridLayout 继承于 ViewGroup
         The default value is false.
         See {@link android.widget.GridLayout#setUseDefaultMargins(boolean)}.-->
         <attr name="useDefaultMargins" format="boolean" />
-        <!-- 子 View 之间进行对齐时，是根据子 View 的边界还是根据 margin 的边界（即 margin 的起点）。默认为alignMargins。-->
+        <!-- 子 View 之间进行对齐时，是与相同索引的 view 的边界还是 margin 的边界（即 margin 的起点）对齐。默认为alignMargins。-->
         <attr name="alignmentMode" />
         <!-- 是否强制使行的边界与行的索引顺序一致。
 		When set to true, forces row boundaries to appear in the same order
