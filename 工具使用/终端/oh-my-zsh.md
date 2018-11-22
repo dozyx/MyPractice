@@ -20,7 +20,19 @@ Oh My Zsh 是个管理 zsh 配置的框架，而 zsh 专为交互式使用的 sh
 
 
 
+### 主题
 
+### 随机主题
 
+编辑 `~/.zshrc`
 
+```shell
+ZSH_THEME="random"
+```
+
+### 输入当前使用主题
+
+指定的主题 `echo $ZSH_THEME`
+
+随机主题 `print $RANDOM_THEME`
 
