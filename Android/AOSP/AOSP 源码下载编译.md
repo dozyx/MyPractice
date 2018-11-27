@@ -142,7 +142,7 @@ categories: 笔记
 
 #### 镜像源方法（清华大学TUNA镜像源）
   参照传统方法，将 https://android.googlesource.com/ 全部使用 https://aosp.tuna.tsinghua.edu.cn/ 代替。  
-+   下载repo工具
++ 下载repo工具
 
    ```Shell
    mkdir ~/bin
@@ -156,14 +156,14 @@ categories: 笔记
 + 然后建立一个工作目录（名字任意）
 
     mkdir WORKING_DIRECTORY
-    	cd WORKING_DIRECTORY
+    ​	cd WORKING_DIRECTORY
 
 + 初始化仓库
 
      repo init -u git://mirrors.ustc.edu.cn/aosp/platform/manifest
-     	## 如果提示无法连接到 gerrit.googlesource.com，可以编辑 ~/bin/repo，
-     	## 把 REPO_URL 一行替换成下面的：
-     	## REPO_URL = 'https://gerrit-googlesource.proxy.ustclug.org/git-repo'
+     ​	## 如果提示无法连接到 gerrit.googlesource.com，可以编辑 ~/bin/repo，
+     ​	## 把 REPO_URL 一行替换成下面的：
+     ​	## REPO_URL = 'https://gerrit-googlesource.proxy.ustclug.org/git-repo'
 
 + 如果需要某个特定的 Android 版本（[Android 版本列表](https://source.android.com/source/build-numbers.html#source-code-tags-and-builds)）
 
@@ -172,8 +172,10 @@ categories: 笔记
 + 同步源码树（以后只需执行这条命令来同步）
 
     repo sync
-    ​	
-    ​	
+
+
+ 也可以先下载[初始包](https://mirrors.tuna.tsinghua.edu.cn/aosp-monthly/aosp-latest.tar)，然后执行 `repo sync` 来进行更新。	
+​	
 
 ### 准备编译
 ​	同步完成后，将AOSP文件夹拷贝到分区，打开分区目录进行编译。  
@@ -213,8 +215,53 @@ categories: 笔记
 
 
 
+### 下载技巧
 
+#### 避免下载中断
 
+在 sync 过程中可能出现中断，我们可以通过以下脚本来自动在中断后重新开始
+```bash
+#!/bin/bash 
+#FileName  syn.sh
+
+repo sync 
+while [ $? = 1 ]; do 
+echo "================sync failed, re-sync again =====" 
+sleep 3 
+repo sync 
+done
+```
+
+#### 快速下载当前分支
+
+> 使用此方法无法切换分支
+> 方法出自 [Mac 下载 编译 debug Android 源码](http://www.jianshu.com/p/759a6677c946)
+> 在执行完 `repo init` 后，会生成一个 `.repo` 文件夹，在 `.repo/manifests/default.xml` 中记录了所有要下载的 project 信息，部分 project 信标签会配置 `clone-depth="1"`，它的作用是 clone 最新的内容，而不 clone 历史记录。因此，通过为每个 project 添加这个配置，就可以达到快速下载目的。
+> 通过运行以来 python 来自动为每个 project 添加（需要将 default.xml 和该 py 文件放在同一文件夹，然后在终端执行脚本，执行后终端将生成修改后的内容，然后复制到 default.xml 中）
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+file_object = open('default.xml')
+
+change_content = ''
+while 1:
+    line = file_object.readline()
+    if not line.__contains__('clone-depth'):
+        try:
+            endpos = line.index("/>")
+            line = line[0:endpos] + ' clone-depth="1"' + line[endpos: line.__len__()]
+            pass
+        except Exception, e:
+            pass
+
+    change_content += line
+    if not line:
+        break
+    pass  # do something
+
+print change_content
+```
 
 ## 编译问题汇总
 
