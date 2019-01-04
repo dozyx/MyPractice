@@ -109,3 +109,4 @@ GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.sp
         layoutParams.width = 0;
 ```
 
+> 有一个很坑的地方，在使用 weight 来进行等分时，同一列或行都要设置
