@@ -11,7 +11,7 @@
 >
 > Android API 中的 “package name” 实际为 application ID，如 Context.getPackageName()。
 
-
+> BuildConfig 文件的 package 与 manifest 中的 package 一致。
 
 参考：    
 
