@@ -43,3 +43,12 @@ merge 和 rebase 最终得到结果没有任何区别，不过使用 rebase 可�
 
 > 理解，rebase 实际会导致一些 commit 被丢弃，如果这些 commit 已被 push，并被其他人 pull 了下来的话，如果这时候改用 rebase 而回滚 merge 操作，将导致其他人在再次进行 pull 时合并混乱，在 log 中将看到重复的 commit 记录。
 
+
+
+### log 里出现两条相同的 commit
+
+[Git commits are duplicated in the same branch after doing a rebase](https://stackoverflow.com/questions/9264314/git-commits-are-duplicated-in-the-same-branch-after-doing-a-rebase)
+
+使用 rebase 要记住：**never rebase commits that have ever existed anywhere but your local repository**
+
+> “相同”其实并不准确，实际是两条不同的 commit，一个是 rebase 前，一个是 rebase 后。他们出现的原因是该 commit 在 rebase 前已经 push，而 rebase 会产生一条新的 commit， rebase 后的 push 里并不会将该 commit 删除，所以就导致了两条“重复”的 commit。更具体的分析看上面的链接。
