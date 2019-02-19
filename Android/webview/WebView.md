@@ -79,6 +79,62 @@ shouldOverrideUrlLoading 不拦截 post 请求，比如 form 里的 post 方法
 
 
 
+### 重定向问题
+
+开发中遇到一个问题，H5 页面 A 发起支付宝网页支付，按返回键，又重复发起了支付，无法回到第一个页面。概括起来就是，H5 页 A 发起支付，跳到 B，B 重定向到支付宝网页支付页面，返回，回到 B，B 又重定向到了支付页面。
+
+解决：
+
+这个问题出现的原因在于 shouldOverrideUrlLoading 方法的处理，下面是我一开始有重复重定向的代码（这个代码跟上一个电话拨打部分的差不多）：
+
+```java
+public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+    Uri uri = request.getUrl();
+    if (uri.toString().startsWith("http://") || uri.toString().startsWith("https://")) {
+        view.loadUrl(uri.toString());
+        return true;
+    }
+    ...
+    return true;
+}
+```
+
+这段代码里我犯了两个错误：
+
+1. 返回值没理解好
+2. 调用了 loadUrl
+
+首先，看下 [shouldOverrideUrlLoading](https://developer.android.com/reference/android/webkit/WebViewClient#shouldOverrideUrlLoading(android.webkit.WebView,%20android.webkit.WebResourceRequest)) 返回值的说明：
+
+true - WebView 放弃加载该 URL（跟方法名一样，可以理解为 app 拦截了该 URL 自行处理）；
+
+false - WebView 正常加载该 URL。
+
+上面犯的错误就是返回 true 选择了自行处理，却又执行了 loadUrl。shouldOverrideUrlLoading 文档里也对此进行了特别注明：
+
+> **Note:** Do not call `WebView.loadUrl(String)` with the request's URL and then return `true`. This unnecessarily cancels the current load and starts a new load with the same URL. The correct way to continue loading a given URL is to simply return `false`, without calling `WebView.loadUrl(String)`.
+
+按个人的理解，应该对 重定向 URL 进行 loadUrl 破坏了 WebView 对该 URL 重定向的处理，无法区分它是否为真实的目的页面。
+
+最后，代码进行修改后返回正常：
+
+```java
+public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+    Uri uri = request.getUrl();
+    if (uri.toString().startsWith("http://") || uri.toString().startsWith("https://")) {
+        return false;
+    }
+    ...
+    return true;
+}
+```
+
+参考：
+
+[Android 解决WebView重定向问题](https://www.jianshu.com/p/c01769ababfa)
+
+
+
 参考：
 
 [What does 'chrome' mean?](https://stackoverflow.com/questions/5071905/what-does-chrome-mean)
