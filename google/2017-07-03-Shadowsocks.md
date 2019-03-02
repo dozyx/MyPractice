@@ -1,10 +1,18 @@
----
-title: Shadowsocks 多用户配置
-tags:
-  - shadowsocks
-date: 2017-07-03 15:37:22
-categories: 工具
----
+### 插件使用
+
+https://github.com/shadowsocks/shadowsocks-windows/issues/1847
+
+
+
+
+
+
+
+
+
+
+
+### 多用户配置
 
 [Configure Multiple Users](https://github.com/shadowsocks/shadowsocks/wiki/Configure-Multiple-Users)
 
