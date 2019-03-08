@@ -57,7 +57,23 @@ TextInputLayout 以一个 EditText 作为子视图来为 EditText 提供一些�
 
 
 
+### 密码图片大小
 
+密码可见性图片的显示区域有最小宽高限制。
+
+```java
+<com.google.android.material.internal.CheckableImageButton
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_input_password_toggle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical|end|right"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:minHeight="48dp"
+    android:minWidth="48dp"
+    tools:ignore="Overdraw"/>
+```
 
 ## TextInputEditText
 
@@ -70,3 +86,4 @@ TextInputEditText 是 EditText 的子类，它被设计来用于 TextInputLayout
 参考：
 
 [EditText added is not a TextInputEditText. Please switch to using that class instead](https://stackoverflow.com/questions/35775919/edittext-added-is-not-a-textinputedittext-please-switch-to-using-that-class-ins/36269036#36269036)
+
