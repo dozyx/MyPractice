@@ -93,6 +93,16 @@ columnOrderPreserved 属性进一步说明：该属性为 true 是，GridLayout 
 
 
 
+### Item 间距
+
+将 useDefaultMargins 设为 true 时，会设置一个默认的间距（垂直和水平方向都会生效），可以通过修改 default_gap 的值来改变默认值。默认是 8dp。
+
+```
+<dimen name="default_gap">8dip</dimen>
+```
+
+如果要单独设置不同的行间距和列间距，除了每个 Item 单独调整之外，没找到好的办法。
+
 
 
 ### 实践
