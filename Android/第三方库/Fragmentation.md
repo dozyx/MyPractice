@@ -34,3 +34,16 @@
 - dialogFragment 里直接启动另一个 fragment，该 fragment 会显示在 dialog 下面
 - 使用 fragmentation 后，如果想要移除，工作量会很大
 
+### onPause 没有回调
+
+https://github.com/YoKeyword/Fragmentation/issues/407
+
+解决：将 onResume 和 onPause 换成 onSupportVisible 和 onSupportInVisible
+
+
+
+###  A-B 调用 startWithPop 启动 C 会导致 A 的 onSupportInvisible 和 onSupportVisible 触发
+
+https://github.com/YoKeyword/Fragmentation/issues/342
+
+解决：使用 start 启动 C，再调用 popTo 返回到 A。
