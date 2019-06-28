@@ -103,7 +103,7 @@ columnOrderPreserved 属性进一步说明：该属性为 true 是，GridLayout 
 
 如果要单独设置不同的行间距和列间距，除了每个 Item 单独调整之外，没找到好的办法。
 
-
+> 190625 update：列间距可以使用 Space 设置（将 Space 作为单独的列），然后行间距使用 margin
 
 ### 实践
 
