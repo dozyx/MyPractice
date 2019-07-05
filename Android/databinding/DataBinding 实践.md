@@ -8,6 +8,28 @@
 
 
 
+### 如何避免重复 DataBindingUtil 的方法来初始化
+
+* 方法一：BaseActivity 引入 ViewDataBinding 作为泛型，采用以下方式初始化
+
+  ```java
+  public abstract class BaseActivity<T extends ViewDataBinding> extends AppCompatActivity {
+      protected T binding;
+  
+      @Override
+      protected void onCreate(@Nullable Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          binding = DataBindingUtil.setContentView(this, getLayoutId());
+      }
+  
+      protected abstract int getLayoutId();
+  }
+  ```
+
+* 
+
+
+
 
 #### 问题记录
 
