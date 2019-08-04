@@ -209,7 +209,7 @@ categories: 笔记
 
    `-jN`参数中的N通常使用的是硬件线程数目的一到两倍。如dual-E5520机器（两个CPU，每个CPU有4个核心，每个核心有两个线程），最快的编译命令在`make -j16`和`make -j32`之间。
 
-4. ​运行  
+4. 运行  
    可通过虚拟器或将通过flash编译到设备中（注意：目标硬件需要有专用的二进制文件，个人理解为驱动）。  
     `$ emulator`
 
@@ -262,6 +262,15 @@ while 1:
 
 print change_content
 ```
+
+#### repo设置代理
+
+```
+export http_proxy=http://127.0.0.1:1080
+export https_proxy=https://127.0.0.1:1080
+```
+
+
 
 ## 编译问题汇总
 
