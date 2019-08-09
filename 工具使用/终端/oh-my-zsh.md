@@ -36,3 +36,14 @@ ZSH_THEME="random"
 
 随机主题 `print $RANDOM_THEME`
 
+
+
+
+
+### 使用遇到的问题(mac)
+
+#### 添加 PATH
+
+将 path 添加到 `~/.zshrc` 文件
+
+如：`export PATH=/Users/zero/Library/Android/sdk/tools/:$PATH`
