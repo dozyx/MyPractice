@@ -284,6 +284,7 @@ pipeline {
 
 * 安装 gradle 插件，如果在搭建 Jenkins 时选择了推荐插件，会自动安装。
 * 新建任务 -> 构建一个自由风格的软件项目 -> 填写信息 -> 构建中选择 invoke gradle script -> use gradle wrapper -> tasks 中可填入想要执行的任务，如 assembleRelease
+  * Invoke gradle script 中，勾选 Make gradlew executable。否则会提示权限拒绝问题。
 * （可选）如果工程位于 github ，需要配置，系统管理 -> github -> github servers，或者在创建任务时配置
 * 配置 android sdk 路径。Jenkins 会自动从工程的 local.preperties 中读取 sdk.dir 的路径，如果没有，也可以在系统配置 -> 全局属性 -> 环境变量里添加 ANDROID_HOME 变量，值为本地 sdk 所在路径。
 * 运行 unit test
@@ -292,12 +293,54 @@ pipeline {
 
 
 
-#### 问题记录
-##### github v1.26.0 is missing. To fix, install v1.26.0 or later.
+### 上传到蒲公英
+
+https://www.pgyer.com/doc/view/jenkins_plugin
+
+插件上传成功后，会将蒲公英返回参数注入为 jenkins 的全局变量
+
+
+
+### 邮件
+
+jenkins 配置：
+
+* 需要配置发件人信息和服务器
+
+task 配置：
+
+* 配置 Triggers
+
+参考：[jenkins配置邮件及增强版邮件通知](https://blog.csdn.net/u013066244/article/details/78665075)
+
+
+
+### 问题记录
+#### github v1.26.0 is missing. To fix, install v1.26.0 or later.
 确保插件已安装后，重启 Jenkins 后正常
 
-##### The Gradle wrapper has not been found in these directories
+#### The Gradle wrapper has not been found in these directories
 权限问题，需要在系统设置或在任务中配置账户
+
+#### Failed to install the following Android SDK packages as some licences have not been accepted.
+
+[参考](https://stackoverflow.com/questions/54273412/failed-to-install-the-following-android-sdk-packages-as-some-licences-have-not-b)
+
+window 执行 `%ANDROID_HOME%/tools/bin/sdkmanager --licenses` 没用
+
+linux 执行 `yes | sdkmanager --licenses` 有用
+
+
+
+#### 提示 sdk 找不到
+
+`SDK location not found. Define location with an ANDROID_SDK_ROOT environment variable or by setting the sdk.dir path in your project's local properties file at `
+
+确定环境变量已配置。后台帮忙在 linux 上配置的时候一直提示这个错误，后面在 Jenkins 上配置了变量才正常，很奇怪为什么他们的 Jenkins 无法读取系统的环境变量，不过也有可能是要重启 Jenkins，但他们没有帮我重启，所以不确定原因。
+
+mac 需要注意 sdk 文件目录权限
+
+
 
 
 
