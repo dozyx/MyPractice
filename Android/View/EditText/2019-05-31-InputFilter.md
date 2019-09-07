@@ -44,7 +44,7 @@ public class SpaceInputFilter implements InputFilter {
 
 在输入过程中，输入的字母只是预览在 EditText 中（有些输入法不会，所以没问题），连续的输入会作为 source 传入，而不是一次一个字母，dstart 的值为第一个输入字母插入的位置，即 source 替代的是整个预览的输入范围。当 filter 返回一个 String，即上面的 source.toString() 时，预览的内容会立即当作实际的输入，但是后续的 source 还是包含了上一次的输入，这就导致了输入的重复。不过不同的输入法也不一样，有的输入法就只是将后面输入的作为 source。
 
-所以这里存在的一个问题是，为什么当 filter() 方法返回 String 时，会被当做为实际的输入了？
+所以这里存在的一个问题是，为什么当 filter() 方法返回 String 时，会被当做为实际的输入？
 
 这个问题暂时没有找到答案。。。
 
