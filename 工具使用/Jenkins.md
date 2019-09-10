@@ -293,7 +293,7 @@ pipeline {
 
 
 
-### 上传到蒲公英
+#### 上传到蒲公英
 
 https://www.pgyer.com/doc/view/jenkins_plugin
 
@@ -301,7 +301,7 @@ https://www.pgyer.com/doc/view/jenkins_plugin
 
 
 
-### 邮件
+#### 邮件
 
 jenkins 配置：
 
@@ -312,6 +312,34 @@ task 配置：
 * 配置 Triggers
 
 参考：[jenkins配置邮件及增强版邮件通知](https://blog.csdn.net/u013066244/article/details/78665075)
+
+
+
+#### 360 加固
+
+编写脚本使用命令行加固
+
+注意：
+
+* 360 加固的 jar，mac 和 Windows 不是共用的
+* 如果 360 加固文件要上传到 git 的话，需要注意 bin 文件夹是否被忽略了。。。
+
+
+
+#### 根据参数配置执行不同的 gradle task
+
+* General 勾选 `This project is parameterized`，并添加值，这些值可以通过环境变量访问
+* 使用 `$` 使用环境变量。
+
+比如，assemble${env}Release
+
+
+
+### 配置branch
+
+需要注意源码管理中需要将分支指定为分支的环境变量
+
+
 
 
 
