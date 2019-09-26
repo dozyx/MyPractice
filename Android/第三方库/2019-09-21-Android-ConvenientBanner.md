@@ -32,3 +32,5 @@ ScrollView 的子 View 为 LinearLayout，ConvenientBanner 放在 LinearLayout �
 是因为 fragment 的加载时机导致 view 的宽度还没有被正确计算？不过为什么去掉 ScrollView 就正常。。。
 
 数据加载改到 onResume 也一样。
+
+将 ConvenientBanner 的高度改为固定之后正常（之前是 wrap_content）。。。也不是 ScrollView 的问题
