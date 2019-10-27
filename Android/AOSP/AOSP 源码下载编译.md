@@ -1,5 +1,5 @@
 ---
-title: Android 源码下载编译
+ title: Android 源码下载编译
 tags:
   - android
 date: 2017-02-11 15:37:22
@@ -10,7 +10,7 @@ categories: 笔记
 [Android Source](https://source.android.com/source/index.html)  
 [MacPorts卡在"正在运行软件包脚本"解决方法](http://blog.csdn.net/ruiqiangzh/article/details/51017342)  
 [Mac OS X 下 Android6.0源码的下载与编译](http://blog.csdn.net/loften_93663469/article/details/51503293)  
-[Android 镜像使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/)
+[Android 镜像使 用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/)
 
 [解决macOSX10.12.SDK下编译Android Open Source Project出错的问题](http://palanceli.com/2016/09/25/2016/0925AOSPOnMac/)
 
