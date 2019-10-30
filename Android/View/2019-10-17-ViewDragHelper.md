@@ -33,6 +33,8 @@ Callback 是一个抽象类，它只有一个方法是抽象的：
 * `int getViewVerticalDragRange(View child)` 返回可拖拽子 view 垂直运动范围的大小。如果不能垂直移动则应该返回 0。
 
   > 不是很理解这个方法。我在代码里返回了 0，还是可以实现 drag。源码中，这个方法主要影响了 touch slop 的计算，以及 settle 时间的计算。
+  >
+  > 个人理解这个方法并不是拿来限制移动的，而是提供一个移动范围的值，然后 ViewDragHelper 用来进行一些计算。
 
 * `int getViewHorizontalDragRange(View child)` 
 
