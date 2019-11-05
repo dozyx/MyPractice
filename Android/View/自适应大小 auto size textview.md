@@ -35,6 +35,10 @@
 
 
 
+### 设置 android:singleLine="true" 文字无法缩小
+
+singleLine 为 true 时，会设置 ellipsize 为 ELLIPSIZE_END，文本被省略之后， TextView 的尺寸总是能容纳全部文字，那么自然没必要缩小。
+
 
 
 
