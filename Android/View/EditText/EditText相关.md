@@ -69,6 +69,16 @@ editText.setFilters(new InputFilter[]{typeFilter});
 
 
 
+## focus 移除
+
+调用 View#clearFocus 之后，focus 将移到第一个 focusable 的 View 中。。。如果想要清除整个页面的 focus，可以将一个不可编辑的 View 作为第一个 focusable。
+
+参考：
+
+https://stackoverflow.com/questions/1555109/stop-edittext-from-gaining-focus-at-activity-startup
+
+
+
 
 
 参考：
