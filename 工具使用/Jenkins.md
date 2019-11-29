@@ -339,7 +339,15 @@ task 配置：
 
 需要注意源码管理中需要将分支指定为分支的环境变量
 
+#### 配置 branch Filter
 
+正则匹配多个字符串：`^(?:.*release|.*master).*$`
+
+> ?: 的意思是不创建 capture group。创建的 group 可以在表达式中使用 \1 的方式引用 。
+
+参考：
+
+https://stackoverflow.com/questions/30095583/how-do-i-configure-jenkins-to-build-all-branches-except-a-few-which-i-exclude
 
 
 

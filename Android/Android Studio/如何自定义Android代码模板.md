@@ -200,6 +200,60 @@ Android Studio 的模板文件放在`安装目录\plugins\android\lib\templates`
 
 
 
+## 基于 EmptyActivity 自定义 MVP Activity
+
+生成文件包括：
+
+* Activity 类
+* （可选）layout 布局文件
+* Presenter 实现类
+* View 接口类
+
+> 感觉使用 Contract 类有点多余，所以没加。如果需要写测试代码的话，将 presenter 类抽成 interface 还是有必要的。
+
+* 找到模板目录，拷贝 EmptyActivity 文件夹，将新的文件夹命名为 MVPActivity。下面的修改基于 MVPActivity 目录下的文件。
+
+  > 模板目录位置：AS安装目录\plugins\android\lib\templates\activities
+
+* `template.xml` 文件修改
+
+  * `name` 修改为 MVP Activity，重启 AS，在工程里就可以看到一个新的模板 MVP Activity
+  * 修改 `parameter` 标签。parameter 定义了使用模板时可以配置的参数，参数类型包括：string、boolean 等。
+
+* `recipe.xml.ftl` 文件修改。这个文件定义了如何生成实际的文件，要生成的文件的模板也是 ftl 格式文件，文件模板会读取 `template.xml` 和 `globals.xml.ftl` 中定义的变量来替换模板里的占位符。
+
+  * 因为原有目录已经可以生成 Activity 和布局文件，所以我们需要创建的文件只有 View 接口类和 Presenter 实现类。
+
+  * 在 `MVPActivity\root\src\app_package` 下新增两个文件：`SimpleView.java.ftl` 和 `SimplePresenter.java.ftl`。（我是基于 SimpleActivity.java.ftl 来修改的）
+
+  * 接着就是为创建的两个 ftl 文件编写代码。可以先把一个手动编写的 java 文件复制进去，然后再使用模板变量来做修改。
+
+    可以比对 SimpleActivity.java.ftl 和它实际生成 的 java 文件来编写。
+
+    使用 `${}` 引用变量，这些变量声明包括：
+
+    * `globals.xml.ftl` 
+
+    *  `../common/common_globals.xml.ftl` 
+    * `template.xml`  里面 <parameter> 的 id
+
+    （有些使用不太清楚的可以参考其他模板）
+
+    对于 View 和 Presenter 的命名，可以在 `template.xml` 中声明一个 id 为 featureName 的 parameter，然后再 ftl 模板文件中引用该变量。
+
+  * 编写完 ftl 模板文件后，需要修改 `recipe.xml.ftl` 来生成实际文件。类似于
+
+    ```xml
+    <instantiate from="root/src/app_package/SimpleView.java.ftl"
+                       to="${escapeXmlAttribute(srcOut)}/${featureName}View.java" />
+        <instantiate from="root/src/app_package/SimplePresenter.java.ftl"
+                       to="${escapeXmlAttribute(srcOut)}/${featureName}View.java" />
+    ```
+
+    （修改之后新建文件就可以看到效果，不需要重启 AS）
+
+
+
 ## 一些 FTL 语法
 
 if 语句：
