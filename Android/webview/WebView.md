@@ -135,6 +135,45 @@ public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request
 
 
 
+## WebView 优化
+
+### 安全
+
+#### addJavascriptInterface 接口引起远程代码执行漏洞
+
+Android 4.2 要求 js 调用的函数需要有 @JavascriptInterface 注解，所以此问题可以忽略
+
+
+
+#### 密码明文存储漏洞
+
+密码会被明文保到 /data/data/com.package.name/databases/webview.db 中
+
+解决：
+
+```java
+WebSettings.setSavePassword(false)
+```
+
+
+
+#### 域控制不严格漏洞
+
+描述：A 应用启动 B 应用的 Activity 加载一个恶意的 file 协议 url，然后通过该网页获取 B 应用的内部私有文件。
+
+优化：
+
+* 不需要使用 file 协议的网页禁用
+* 对于
+
+> 理解：如果一个应用声明可以打开加载 url，那么其他应用就可能提交恶意的 url，然后在加载的页面中进行恶意操作。
+
+
+
+[WebView的优化--处理WebView的容易忽略的漏洞](https://blog.csdn.net/li15225271052/article/details/73730321)
+
+
+
 参考：
 
 [What does 'chrome' mean?](https://stackoverflow.com/questions/5071905/what-does-chrome-mean)

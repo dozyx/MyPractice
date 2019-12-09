@@ -164,3 +164,27 @@
 
 
 ### 沉浸式交互组件
+
+沉浸式可以分为 3 个阶段：
+
+* 19~21：可以实现沉浸式，但表现一般
+  * 实现方式：通过 FLAG_TRANSLUCENT_STATUS 设置状态栏为透明和全屏模式，添加一个与 StatusBar 一样尺寸的 View，通过设置该 view 颜色实现沉浸式
+* 21+：`android:statusBarColor` 属性
+* 23+：可以改变状态栏字体和图标颜色
+
+
+
+适配主流厂商：
+
+* MIUI 适配：在 Android6.0 之前，MIUI 使用的是自定义方法，需要通过反射对状态栏颜色进行设置
+
+* OPPO 适配：在 Android5.0 之前是系统方法，之后的 Color OS 版本需要适配
+
+  > ImmersionBar 库没看到有适配 OPPO。
+
+* 魅族：Android 6.0 之前需要适配
+
+
+
+### 基于信息流的图片加载框架
+
