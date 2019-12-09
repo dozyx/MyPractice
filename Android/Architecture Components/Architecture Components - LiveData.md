@@ -33,6 +33,59 @@ MediatorLiveData 会响应任何一个 source 的变化。
 
 
 
+## Transformations
+
+LiveData 变换方法。
+
+
+
+### switchMap
+
+观察输入的变化，根据输入应用一个 Function，将该输入转换为一个 LiveData。将最后一个输入的返回的 LiveData 的值作为输出。
+
+源码分析：
+
+```java
+    @MainThread
+    public static <X, Y> LiveData<Y> switchMap(
+            @NonNull LiveData<X> source,
+            @NonNull final Function<X, LiveData<Y>> switchMapFunction) {
+        final MediatorLiveData<Y> result = new MediatorLiveData<>();
+        // 观察输入变化
+        result.addSource(source, new Observer<X>() {
+            LiveData<Y> mSource;
+
+            @Override
+            public void onChanged(@Nullable X x) {
+                // 输入发生变化，应用 Function 变换得到一个 LiveData
+                LiveData<Y> newLiveData = switchMapFunction.apply(x);
+                if (mSource == newLiveData) {
+                    return;
+                }
+                if (mSource != null) {
+                    // 已经不关心旧的输入产生的数据，所以移除
+                    result.removeSource(mSource);
+                }
+                mSource = newLiveData;
+                if (mSource != null) {
+                    result.addSource(mSource, new Observer<Y>() {
+                        @Override
+                        public void onChanged(@Nullable Y y) {
+                            // 将数据透传返回，得到最新的输入产生的数据
+                            result.setValue(y);
+                        }
+                    });
+                }
+            }
+        });
+        return result;
+    }
+```
+
+
+
+
+
 
 
 ## 分析
