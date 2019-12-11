@@ -49,6 +49,13 @@ categories: 笔记
 
 
 
+#### stateHidden 和 stateAlwaysHidden
+
+参考：https://developer.android.com/guide/topics/manifest/activity-element.html#wsoft
+
+* stateHidden - 用户明确选择跳转到该 Activity 的情况（不是因为离开了另一个 Activity 而返回），隐藏软键盘
+* stateAlwaysHidden - 当 Activity 的主窗口有输入焦点时始终隐藏软键盘。
+
 #### adjustPan 和 adjustResize的区别
 
 ​	adjustPan 将导致整个 window 的上移（如一个Activity，上移后上面部分将被遮挡）。一般adjustResize显示效果更好。
