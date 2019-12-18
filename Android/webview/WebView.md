@@ -135,6 +135,21 @@ public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request
 
 
 
+#### 记一个奇怪的重定向问题
+
+> 本以为上面的写法可以处理好重定向问题，直到我遇到了测试反馈的一个问题。。。
+
+问题描述：启动一个 H5 页面，点击返回会一直刷新，无法退出页面
+
+原因分析：测试人员在后台配置的是一个电脑版的 url 地址 `http://www.yeahka.com`，WebView 加载后会重定向到手机版页面。点击返回会再次发生重定向。使用手机微信加载该 url 存在类似问题。
+
+奇怪的点：
+
+* 在我的手机（小米8，Android10）不存在该问题。猜测是手机上的 WebView 版本经过更新，新版本已修复该问题。
+* 修改配置为 `setJavaScriptEnabled(false)` 也可以解决该问题。猜测跟 H5 本身有关系？
+
+
+
 ## WebView 优化
 
 ### 安全
