@@ -1,3 +1,10 @@
+> 评价：
+>
+> 一般，内容编排没什么层次感，讲解的知识点也比较分散。感觉只是为了写成一本书而将众多的知识点拼凑到了一起，没有侧重点。也没有明确的受众群体，整书更像一本科普读物。
+> 但通过此书还是可以看到一些平时工作中接触较少的知识，以及了解到当前行业的趋势以及一些大公司在开发上的经验。但如果是想要对知识有系统地深入学习进阶，这本书作用不大，它只是提供了一些技术方向。 
+>
+> 吐槽：最后几章内容感觉真的是用来凑字数的。。。不是说没价值，而是从篇幅内容上来讲，不适合。
+
 ## 第 1 章 Android 数据技术
 
 * 数据采集：关键页面或关键动作。
@@ -333,19 +340,69 @@
 
 ## 第 5 章 Android 工程构建进阶
 
+## 第 6 章 移动场景下的容器技术
+
+四个阶段：
+
+* MoveToDex
+  * 解决 65536B 问题
+* MultiDex
+  * 副作用：启动慢。影响启动的关键事件：
+    * CRC 校验
+    * 压缩 dex.zip
+    * 加载 dex 文件
+* 组件化和插件化
+* AppBundle、Instant App
 
 
 
+## 第 7 章 移动混合前端技术
+
+Hybird：混合
+
+### H5 方案
+
+* 轻量级方案——H5 应用
+  * Hybird App，原生界面嵌套 Web 页面。
 
 
 
+### Weex 和 React Native
+
+使用 JavaScript 语言
 
 
 
+### Flutter
 
 
 
+## 第 8 章 移动场景下的 AI 技术
 
+* AI 美颜
+* 语音识别打分
+* 翻译机
+
+## 第 9 章 移动场景下的安全攻防技术
+
+### 静态分析 Android 应用
+
+* [ShakaApktool](https://github.com/rover12421/ShakaApktool) 反编译 APK：基于 apktool 增强
+* JEB 分析 Java 代码
+* IDA Pro 静态分析 so 文件
+
+
+
+### 动态分析 Android 应用
+
+* 使用 IDA  Pro 动态调试 APK
+* 使用 Xposed Hook Java 代码
+* 使用 Cydia Substrate Hook Java 和 Native
+* 使用 Frida Hook Java 和 Native 代码
+
+
+
+## Android 平台下的设计模式进阶
 
 
 
