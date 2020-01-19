@@ -177,7 +177,7 @@ public abstract class Lifecycle {
     }
 ```
 
-LifecycleBoundObserver 主要用于处理于 owner 相关的事物，它实现了 LifecycleEventObserver 接口，并继承 ObserverWrapper，当生命周期的 active 状态改变时，调用 ObserverWrapper#activeStateChanged 方法。
+LifecycleBoundObserver 主要用于处理与 owner 相关的事物，它实现了 LifecycleEventObserver 接口，并继承 ObserverWrapper，当生命周期的 active 状态改变时，调用 ObserverWrapper#activeStateChanged 方法。
 
 ```java
 private abstract class ObserverWrapper {
