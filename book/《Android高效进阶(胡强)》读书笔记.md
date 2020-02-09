@@ -1,3 +1,10 @@
+> 评价：
+>
+> 一般，内容编排没什么层次感，讲解的知识点也比较分散。感觉只是为了写成一本书而将众多的知识点拼凑到了一起，没有侧重点。也没有明确的受众群体，整书更像一本科普读物。
+> 但通过此书还是可以看到一些平时工作中接触较少的知识，以及了解到当前行业的趋势以及一些大公司在开发上的经验。但如果是想要对知识有系统地深入学习进阶，这本书作用不大，它只是提供了一些技术方向。 
+>
+> 吐槽：最后几章内容感觉真的是用来凑字数的。。。不是说没价值，而是从篇幅内容上来讲，不适合。
+
 ## 第 1 章 Android 数据技术
 
 * 数据采集：关键页面或关键动作。
@@ -215,23 +222,187 @@
   * 图片加载的流程
     * Bitmap 内存缓存是否存在图片；未解码图片内存缓存是否存在；磁盘缓存是否存在；网络下载
 * 图片加载过程中遇到的问题
-  * 
+  * 通过 APK 路径获取 icon 图片的 Bitmap
+  * 通过应用包名获取 icon 图片的 Bitmap
+  * 加载超大图 OOM
+    * 获取图片的宽和高 inJustDecodeBounds = true
+    * 根据图片的宽度和高度计算缩放比 inSampleSize
+    * 根据缩放比将图片加载到内存中
+  * 列表图片很多时，快速来回滑动会卡顿
+    * 原因：滑动导致 item 项频繁重用和销毁，进而导致图片中的 Bitmap 被频繁地创建和销毁
+    * 解决方案：滚动时，暂停加载；停止滚动时，恢复加载任务
+      * ListView#setOnScrollListener(...)
+      * RecyclerView#addOnScrollListener(...)
+  * 列表图片显示错位、出现闪烁问题
+    * 原因：列表的复用机制
+    * 解决：getView 时给对象提供一个标识，在异步加载完成时比对标识与当前行 item 的标识是否一致，一致则显示，否则不做处理
+  * 加载图片时只显示了一部分
+    * 原因：ImageView 的高度被设置为 WRAP_CONTENT，在加载图片时，会先设置一个 loading 的展位图，这就导致 item 在计算显示高度时开始只能计算占位图的高度
+    * 两个解决方案：
+      * WRAP_CONTENT 改为准确值
+      * 图片下载成功的监听回调中，通知 ImageView 父布局做一次重绘操作，即调用 requestLayout 方法
+  * 加载图片变绿的问题
+    * 原因：图片压缩，在使用 WebP 图片时出现可能性较大
+    * 解决：将默认的 Bitmap 编码格式 RGB565 更改成 ARGB_8888
+* 基于信息流的图片加载设计
+  * API 使用层
+  * 核心层：图片下载的请求分发处理
+  * 缓存层：解码后的 Bitmap 内存缓存、原始未解码的 Bitmap 内存缓存以及磁盘缓存
+* 进程保活
 
 
 
+### Android 文件系统扫描
+
+### 高可用前置通道
+
+前置通道包括：常驻通知栏、消息推送、桌面悬浮窗等。
 
 
 
+## 第 3 章 Android 下的效能进阶
+
+### Android 性能监测实现
+
+启动速度、内存监测、页面卡顿等
+
+* BlockCanary：利用 Looper 队列在处理主线程消息之前和之后提供的日志打印接口
+
+  * 缺点是粒度不够细
+
+* 启动速度
+
+  * Activity：registerActivityLifecycleCallbacks
+  * Fragment：Lifecycle 框架
+
+* 内存监测系统
+
+  * 原理：在 Activity 和 Fragment onDestroy 的时候，将对象用 WeakReference 引用起来，监听对象是否发生内存泄露，通过 WeakReference 和 ReferenceQueue<Object> 配合使用，如果弱引用引用的对象被 GC（垃圾回收），则 Java 虚拟机就会把这个弱引用加入与之关联的引用队列，然后主动执行 GC，触发 WeakReference 被 GC，同时检测 GC 前后 ReferenceQueue 是否包含被监听对象，如果不包含，则说明该对象没有被 GC，一定存在到 GC Roots 的强引用链，也就是发生了内存泄露。
+
+* 页面卡顿解决方案
+
+  * 原理：通过设置主线程 Looper 日志，在主线程接收到消息并开始执行时，延时 500ms 新建子线程记录当前的堆栈信息，如果主线程在 500ms 内执行完则取消子线程，如果主线程超过 2s 才执行完则获取子线程保存的堆栈信息上报。
+
+* 处理 App 性能问题的经验
+
+  * 合理使用 static 成员
+  * merge、include
+  * 延迟加载 View；使用 ViewStub
+  * 动态注册的广播要记得反注册
+  * ListView 性能优化
+    * item 布局
+    * 背景色与 cacheColorHint 设置相同颜色
+    * getView 重用 View
+    * 考虑分页加载
+  * 注意使用线程的同步（synchronized）机制，防止多个线程同时访问一个对象时发生异常
+  * 合理使用 StringBuffer、StringBuilder、String
+  * 执行后 IO 操作，记得关闭
+  * 使用 IntentService 代替 Service
+  * 使用 Application Context 代替 Activity 中的 Context
+  * 及时清理集合中的对象
+  * Bitmap 的使用
+    * 较大 Bitmap 压缩后使用；加载高清大图考虑使用 BitmapRegionDecoder；使用完调用 recycle
+  * 巧妙运用 SoftReference
+  * 尽量不要使用整张大图作为资源文件，尽量使用 9patch
+
+  
+
+### App 真机检测系统
+
+* 真机控制服务器、真机连接 Hub 等
+* monkey 检测
+* 自动化敏感权限检测
 
 
 
+### APK 信息一站式修改
+
+* APK 文件构成
+* APK 签名校验流程
+* V1 与 V2 签名
+* 如何打造渠道包
+  * V1原理：在 APK 文件的注释字段中添加动态信息
+  * V2：在 APK 签名块中添加一个 ID-Value 并赋值。
 
 
 
+## 第 4 章 Android 工具应用进阶
+
+### 游戏加速器
+
+### 近场传输
+
+### 微信清理
+
+### Google 安装器
 
 
 
+## 第 5 章 Android 工程构建进阶
 
+## 第 6 章 移动场景下的容器技术
+
+四个阶段：
+
+* MoveToDex
+  * 解决 65536B 问题
+* MultiDex
+  * 副作用：启动慢。影响启动的关键事件：
+    * CRC 校验
+    * 压缩 dex.zip
+    * 加载 dex 文件
+* 组件化和插件化
+* AppBundle、Instant App
+
+
+
+## 第 7 章 移动混合前端技术
+
+Hybird：混合
+
+### H5 方案
+
+* 轻量级方案——H5 应用
+  * Hybird App，原生界面嵌套 Web 页面。
+
+
+
+### Weex 和 React Native
+
+使用 JavaScript 语言
+
+
+
+### Flutter
+
+
+
+## 第 8 章 移动场景下的 AI 技术
+
+* AI 美颜
+* 语音识别打分
+* 翻译机
+
+## 第 9 章 移动场景下的安全攻防技术
+
+### 静态分析 Android 应用
+
+* [ShakaApktool](https://github.com/rover12421/ShakaApktool) 反编译 APK：基于 apktool 增强
+* JEB 分析 Java 代码
+* IDA Pro 静态分析 so 文件
+
+
+
+### 动态分析 Android 应用
+
+* 使用 IDA  Pro 动态调试 APK
+* 使用 Xposed Hook Java 代码
+* 使用 Cydia Substrate Hook Java 和 Native
+* 使用 Frida Hook Java 和 Native 代码
+
+
+
+## Android 平台下的设计模式进阶
 
 
 
