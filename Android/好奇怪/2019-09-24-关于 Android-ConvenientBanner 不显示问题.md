@@ -2,7 +2,7 @@
 >
 > 为了查找原因，接下来就是一波漫长的分析。。。
 
-首先这个 banner 库是这样子的，ConvenientBanner 是 banner 控件，它继承于 RelativeLayout，它有两个子 view：CBLoopViewPager 和 LinearLayout。LinearLayout 用于添加指示器，这个不管。CBLoopViewPager 是展示 banner 的实际控件，它继承与 RecyclerView。既然显示不出来，那就应该是跟 item view 的创建有关，既然是 RecyclerView，那么 item 的创建就跟 adapter 有关了，这个 adapter 是 CBPageAdapter，查看它的 onCreateViewHolder 方法：
+首先这个 banner 库是这样子的，ConvenientBanner 是 banner 控件，它继承于 RelativeLayout，它有两个子 view：CBLoopViewPager 和 LinearLayout。LinearLayout 用于添加指示器，这个不管。CBLoopViewPager 是展示 banner 的实际控件，它继承 RecyclerView。既然显示不出来，那就应该是跟 item view 的创建有关，既然是 RecyclerView，那么 item 的创建就跟 adapter 有关了，这个 adapter 是 CBPageAdapter，查看它的 onCreateViewHolder 方法：
 
 ```java
     @Override
@@ -151,7 +151,7 @@ Breakpoint reached
 	  at androidx.appcompat.widget.ActionBarOverlayLayout.onLayout(ActionBarOverlayLayout.java:446)
 	  at android.view.View.layout(View.java:20726)
 	  at android.view.ViewGroup.layout(ViewGroup.java:6198)
-	  at android.widget.FrameLayout.layoutChildren(FrameLayout.java:323)
+	  at android.widget.FrameLayout.layoutChildren(Fra meLayout.java:323)
 	  at android.widget.FrameLayout.onLayout(FrameLayout.java:261)
 	  at android.view.View.layout(View.java:20726)
 	  at android.view.ViewGroup.layout(ViewGroup.java:6198)
