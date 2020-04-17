@@ -54,5 +54,15 @@ Editor：
       <!-- </editor-fold>-->
   ```
 
-  
+  > 可以在 AS 设置中添加 live templates 快速生成代码
+  >
+  > * fold
+  >
+  >   <!-- <editor-fold desc="$title$">-->
+  >
+  > * nfold
+  >
+  >   <!-- </editor-fold>-->
+  >
+  > 也可以同时生成两句注释，然后在中间写布局代码
 
