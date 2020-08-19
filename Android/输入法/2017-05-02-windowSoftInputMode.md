@@ -54,7 +54,14 @@ categories: 笔记
 参考：https://developer.android.com/guide/topics/manifest/activity-element.html#wsoft
 
 * stateHidden - 用户明确选择跳转到该 Activity 的情况（不是因为离开了另一个 Activity 而返回），隐藏软键盘
+
+  场景：启动 A；A 启动 B，B 弹出键盘，关闭 B，A 页面显示键盘
+
 * stateAlwaysHidden - 当 Activity 的主窗口有输入焦点时始终隐藏软键盘。
+
+  场景：启动 A；A 启动 B，B 弹出键盘，关闭 B，A 页面不会显示键盘
+
+> 按我的理解，stateHidden 保证启动时是隐藏的，但从其他页面返回不能保证
 
 #### adjustPan 和 adjustResize的区别
 
