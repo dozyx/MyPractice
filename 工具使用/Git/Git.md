@@ -64,6 +64,12 @@
 
 
 
+### 修改 commit 里的 author 信息
+
+https://help.github.com/en/github/using-git/changing-author-info
+
+
+
 参考：    
 
 [Git实用小技巧：git status 中文文件名编码问题解决](http://blog.csdn.net/mlq8087/article/details/52174834)
